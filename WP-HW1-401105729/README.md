@@ -113,27 +113,27 @@ initialize() {
 ### 2. تابع validateInput
 
 ```js
-        validateInput(input) {
-            input.value = input.value.replace(/[^0-9.]/g, '');
+validateInput(input) {
+    input.value = input.value.replace(/[^0-9.]/g, '');
             
-            if ((input.value.match(/\./g) || []).length > 1) {
-                input.value = input.value.substring(0, input.value.lastIndexOf('.'));
-            }
+    if ((input.value.match(/\./g) || []).length > 1) {
+        input.value = input.value.substring(0, input.value.lastIndexOf('.'));
+    }
             
-            input.style.direction = 'ltr';
-            input.style.textAlign = 'left';
-        }
+    input.style.direction = 'ltr';
+    input.style.textAlign = 'left';
+}
 ```
 تابع `validateInput(input)` مقدار ورودی را بررسی کرده و تمامی کاراکترهای غیرعددی و غیر از نقطه را حذف می‌کند. اگر بیش از یک نقطه اعشار در مقدار ورودی وجود داشته باشد، مقدار اضافی را حذف می‌کند و فقط آخرین نقطه اعشار را نگه می‌دارد. در نهایت، جهت متن ورودی را چپ به راست و تراز آن را از چپ تنظیم می‌کند.
 
 ### 3. تابع evaluateAllFormulas
 
 ```js
-        evaluateAllFormulas() {
-            this.formulaElements.forEach(formula => {
-                this.evaluateFormula(formula);
-            });
-        }
+evaluateAllFormulas() {
+    this.formulaElements.forEach(formula => {
+        this.evaluateFormula(formula);
+    });
+}
 ```
 تابع `evaluateAllFormulas()` روی تمام عناصر فرمول در صفحه پیمایش کرده و برای هر یک از آن‌ها تابع `evaluateFormula(formula)` را فراخوانی می‌کند تا مقدار آن محاسبه و به‌روز شود.
 
