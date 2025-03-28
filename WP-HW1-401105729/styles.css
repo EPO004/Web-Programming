@@ -1,0 +1,114 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f8f0;
+    color: #333;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+.formula-group {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0f0e0;
+}
+
+h1 {
+    text-align: center;
+    color: #2c5e2c;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+
+h1 i {
+    margin-left: 10px;
+}
+
+.formula-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: #3a7a3a;
+}
+
+.formula-icon i {
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #3a7a3a;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #d0e8d0;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f8fcf8;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.result {
+    background-color: #f0f8f0;
+    padding: 18px;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+    border: 2px dashed #c0e0c0;
+    color: #2c5e2c;
+}
+
+.unit, .aqi-description {
+    text-align: center;
+    font-size: 16px;
+    color: #5a7a5a;
+    margin-top: 5px;
+}
+
+.aqi-description {
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .formula-group {
+        padding: 20px;
+    }
+}
