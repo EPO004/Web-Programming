@@ -101,7 +101,7 @@ $$
 
 ## بررسی کد JavaScrip
 
-### 1. محاسبه AQI
+### 1. تابع initialize
 
 ```js
 initialize() {
@@ -110,38 +110,54 @@ initialize() {
 ```
 تابع `initialize()` تمامی فیلدهای ورودی را پیدا کرده و جهت آن‌ها را چپ به راست و متن را از چپ تراز می‌کند. سپس برای هر فرمول در صفحه، یک `<div>` با کلاس `result` و مقدار اولیه `0` اضافه می‌کند تا نتیجه محاسبات در آن نمایش داده شود. در ادامه، برای هر ورودی یک رویداد `input` تنظیم می‌کند که هنگام تغییر مقدار، تابع `validateInput()` را اجرا کرده، همه فرمول‌ها را دوباره محاسبه کرده و توضیحات مربوطه را به‌روز می‌کند. در نهایت، هنگام مقداردهی اولیه، تمامی فرمول‌ها محاسبه و توضیحات آن‌ها بروزرسانی می‌شود.
 
-### 2. محاسبه میزان انتشار کربن خودروها
+### 2. تابع validateInput
 
 ```js
-function calculateCO2Emission(fuelConsumption, emissionFactor, distance, efficiency) {
-    return (fuelConsumption * emissionFactor * distance) / efficiency;
-}
+        validateInput(input) {
+            input.value = input.value.replace(/[^0-9.]/g, '');
+            
+            if ((input.value.match(/\./g) || []).length > 1) {
+                input.value = input.value.substring(0, input.value.lastIndexOf('.'));
+            }
+            
+            input.style.direction = 'ltr';
+            input.style.textAlign = 'left';
+        }
 ```
+تابع `validateInput(input)` مقدار ورودی را بررسی کرده و تمامی کاراکترهای غیرعددی و غیر از نقطه را حذف می‌کند. اگر بیش از یک نقطه اعشار در مقدار ورودی وجود داشته باشد، مقدار اضافی را حذف می‌کند و فقط آخرین نقطه اعشار را نگه می‌دارد. در نهایت، جهت متن ورودی را چپ به راست و تراز آن را از چپ تنظیم می‌کند.
 
-### 3. محاسبه جذب CO₂ توسط فضای سبز
+### 3. تابع evaluateAllFormulas
 
 ```js
-function calculateCO2Absorption(treeCount, absorptionRate, areaCovered, pollutionGenerated) {
-    return (treeCount * absorptionRate * areaCovered) - pollutionGenerated;
-}
+        evaluateAllFormulas() {
+            this.formulaElements.forEach(formula => {
+                this.evaluateFormula(formula);
+            });
+        }
 ```
+تابع `evaluateAllFormulas()` روی تمام عناصر فرمول در صفحه پیمایش کرده و برای هر یک از آن‌ها تابع `evaluateFormula(formula)` را فراخوانی می‌کند تا مقدار آن محاسبه و به‌روز شود.
 
-## بررسی مدیریت خطاها و ورودی‌های نامعتبر
+### 4. تابع evaluateFormula
 
 ```js
-function validateInput(input) {
-    input.value = input.value.replace(/[^0-9.]/g, '');
-    
-    if ((input.value.match(/\./g) || []).length > 1) {
-        input.value = input.value.substring(0, input.value.lastIndexOf('.'));
-    }
-
-    if (parseFloat(input.value) < 0) {
-        input.style.borderColor = '#e74c3c';
-        throw new Error('مقادیر منفی مجاز نیستند');
-    }
+evaluateFormula(formulaElement) {
+.
+.
+.
 }
 ```
+تابع `evaluateFormula(formulaElement)` ابتدا مقدار فرمول را از ویژگی `evaluator` عنصر دریافت می‌کند و متغیرهای موجود در آن را شناسایی می‌کند. سپس برای هر متغیر، مقدار ورودی کاربر را از عناصر مربوطه دریافت کرده و بررسی می‌کند که مقدار خالی یا غیرمجاز (مثل مقادیر منفی) نباشد. در صورت وجود مقدار نامعتبر، رنگ کادر ورودی قرمز می‌شود. اگر همه مقادیر معتبر باشند، فرمول با استفاده از `new Function` اجرا شده و نتیجه محاسبه می‌شود. مقدار خروجی در عنصر مربوطه نمایش داده شده و در صورت معتبر بودن، با رنگ سبز نمایش داده می‌شود، در غیر این صورت پیام خطا نشان داده خواهد شد.
+
+### 5. تابع updateDescriptions
+
+```js
+updateDescriptions() {
+.
+.
+.
+}
+```
+تابع `updateDescriptions()` مقدار شاخص کیفیت هوا (AQI) را از عنصر مربوطه دریافت کرده و آن را به عدد تبدیل می‌کند. اگر مقدار نامعتبر باشد، پیام خطایی نمایش داده شده و رنگ پس‌زمینه و متن به رنگ قرمز تغییر می‌کند. در غیر این صورت، بر اساس مقدار AQI، یک متن توصیفی مناسب همراه با یک رنگ مشخص تعیین می‌شود. برای مقادیر پایین‌تر از ۵۰، کیفیت هوا پاک است و رنگ سبز اختصاص داده می‌شود. بین ۵۰ تا ۱۰۰، قابل قبول و زرد، بین ۱۰۰ تا ۱۵۰، ناسالم برای گروه‌های حساس و نارنجی، بین ۱۵۰ تا ۲۰۰، ناسالم و قرمز، بین ۲۰۰ تا ۳۰۰، بسیار ناسالم و بنفش و بالاتر از ۳۰۰، خطرناک و قرمز تیره نمایش داده می‌شود. سپس متن توضیحی در عنصر مربوطه قرار داده شده و رنگ پس‌زمینه، متن و حاشیه آن بر اساس مقدار AQI تنظیم می‌شود.
 
 ## نتیجه‌گیری
 
