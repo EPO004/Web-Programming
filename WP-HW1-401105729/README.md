@@ -9,19 +9,19 @@
 ## فرمول‌های ریاضی
 
 ### 1. شاخص کیفیت هوا (AQI)
-\[
+$$
 AQI = (CO \times 0.3) + (NO_2 \times 0.25) + (SO_2 \times 0.2) + (PM_{2.5} \times 0.15) + (PM_{10} \times 0.1)
-\]
+$$
 
 ### 2. میزان انتشار کربن خودروها
-\[
+$$
 CO₂ = \frac{fuelConsumption \times emissionFactor \times distance}{efficiency}
-\]
+$$
 
 ### 3. جذب CO₂ توسط فضای سبز
-\[
+$$
 CO₂_{absorbed} = (treeCount \times absorptionRate \times areaCovered) - pollutionGenerated
-\]
+$$
 
 ## بررسی بخش HTML
 
