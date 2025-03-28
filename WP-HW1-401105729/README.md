@@ -35,12 +35,18 @@ $$
 ```html
 <label for="CO">مونوکسید کربن (ppm)</label>
 <input type="number" id="CO" value="5">
-
+            
 <label for="NO2">دی‌اکسید نیتروژن (ppm)</label>
 <input type="number" id="NO2" value="10">
-
+            
 <label for="SO2">دی‌اکسید گوگرد (ppm)</label>
 <input type="number" id="SO2" value="8">
+            
+<label for="PM2_5">ذرات معلق ریز (µg/m³)</label>
+<input type="number" id="PM2_5" value="20">
+            
+<label for="PM10">ذرات معلق درشت (µg/m³)</label>
+<input type="number" id="PM10" value="30">
 ```
 
 این بخش مقدار مونوکسید کربن، دی‌اکسید نیتروژن و دی‌اکسید گوگرد را از کاربر دریافت می‌کند.
@@ -48,21 +54,33 @@ $$
 ### 2. ورودی‌های میزان انتشار کربن خودروها
 
 ```html
-<label for="fuel">مصرف سوخت (لیتر در هر 100 کیلومتر)</label>
-<input type="number" id="fuel" value="8">
-
-<label for="distance">مسافت طی شده (کیلومتر)</label>
-<input type="number" id="distance" value="150">
+<label for="fuelConsumption">مصرف سوخت (لیتر/کیلومتر)</label>
+<input type="number" id="fuelConsumption" value="0.08" step="0.01">
+            
+<label for="emissionFactor">ضریب انتشار CO₂ (گرم/لیتر)</label>
+<input type="number" id="emissionFactor" value="2392">
+            
+<label for="distance">مسافت (کیلومتر)</label>
+<input type="number" id="distance" value="100">
+            
+<label for="efficiency">کارایی موتور (0.1 تا 1)</label>
+<input type="number" id="efficiency" value="0.85" step="0.01" min="0.1" max="1">
 ```
 
 ### 3. ورودی‌های جذب CO₂ توسط فضای سبز
 
 ```html
 <label for="treeCount">تعداد درختان</label>
-<input type="number" id="treeCount" value="50">
-
-<label for="area">مساحت تحت پوشش (متر مربع)</label>
-<input type="number" id="area" value="200">
+<input type="number" id="treeCount" value="10">
+            
+<label for="absorptionRate">نرخ جذب (کیلوگرم/درخت/سال)</label>
+<input type="number" id="absorptionRate" value="10">
+            
+<label for="areaCovered">مساحت (مترمربع)</label>
+<input type="number" id="areaCovered" value="10">
+            
+<label for="pollutionGenerated">آلودگی تولیدی (کیلوگرم/سال)</label>
+<input type="number" id="pollutionGenerated" value="500">
 ```
 
 ## بررسی کد JavaScript
