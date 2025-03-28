@@ -99,7 +99,7 @@ $$
 <input type="number" id="pollutionGenerated" value="500">
 ```
 
-## بررسی کد JavaScrip
+## بررسی کد JavaScript
 
 ### 1. تابع initialize
 
