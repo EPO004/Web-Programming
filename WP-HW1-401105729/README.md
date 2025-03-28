@@ -16,19 +16,36 @@ $$
 AQI = (CO \times 0.3) + (NO_2 \times 0.25) + (SO_2 \times 0.2) + (PM_{2.5} \times 0.15) + (PM_{10} \times 0.1)
 $$
 
+که به صورت زیر پیاده سازی شده است:
+```html
+<formula evaluator="(CO*0.3)+(NO2*0.25)+(SO2*0.2)+(PM2_5*0.15)+(PM10*0.1)"></formula>
+<div class="aqi-description"></div>
+```
+
 ### 2. میزان انتشار کربن خودروها
 
 $$
 CO₂ = \frac{fuelConsumption \times emissionFactor \times distance}{efficiency}
 $$
 
+که به صورت زیر پیاده سازی شده است:
+```html
+<formula evaluator="(fuelConsumption*emissionFactor*distance)/efficiency"></formula>
+<div class="unit">گرم CO₂</div>
+```
 ### 3. جذب CO₂ توسط فضای سبز
 
 $$
 CO₂_{absorbed} = (treeCount \times absorptionRate \times areaCovered) - pollutionGenerated
 $$
 
-## ورودی‌ها و بررسی آن‌ها در JavaScript
+
+که به صورت زیر پیاده سازی شده است:
+```html
+<formula evaluator="(treeCount*absorptionRate*areaCovered)-pollutionGenerated"></formula>
+<div class="unit">کیلوگرم CO₂ در سال</div>
+```
+## ورودی‌ها
 
 ### 1. ورودی‌های مربوط به AQI
 
